@@ -64,11 +64,31 @@ def adapter_demo():
         course_adapter = CourseAdapter(course)
         print(course_adapter.get_name())
 
+def composite_demo():
+    user_factory = FactoryProducer.get_factory(factory_name='user')
+    tutor_leader = user_factory.get_instance(instance_type='tutor', arguments=['leader', 24, 'female'])
+    tutor1 = user_factory.get_instance(instance_type='tutor', arguments=['tutor1', 28, 'male'])
+    tutor1_1 = user_factory.get_instance(instance_type='tutor', arguments=['Peter', 21, 'male'])
+    tutor1_2 = user_factory.get_instance(instance_type='tutor', arguments=['Phoebe', 24, 'female'])
+    tutor2 = user_factory.get_instance(instance_type='tutor', arguments=['tutor2', 18, 'female'])
+    tutor1.add_subordinate(tutor1_1)
+    tutor1.add_subordinate(tutor1_2)
+    tutor_leader.add_subordinate(tutor1)
+    tutor_leader.add_subordinate(tutor2)
+
+    print('Tutor leader has subordinates as follows:')
+    for subordinate in tutor_leader.get_subordinate():
+        if subordinate.has_subordinate():
+            for each in subordinate.get_subordinate():
+                print(each.name)
+        print(subordinate.name)
+
 def main():
     factory_demo()
     abstract_factory_demo()
     singleton_demo()
     adapter_demo()
+    composite_demo()
 
 if __name__ == '__main__':
     main()
