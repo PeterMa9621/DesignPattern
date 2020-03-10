@@ -10,4 +10,4 @@ class UserInterface(object, metaclass=abc.ABCMeta):
 
     @abc.abstractmethod
     def get_role(self):
-        raise NotImplementedError('must define get_name')
+        raise NotImplementedError('must define get_role')

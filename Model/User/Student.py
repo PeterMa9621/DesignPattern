@@ -1,7 +1,7 @@
-from Factory.UserInterface import UserInterface
+from Interface.User.UserInterface import UserInterface
 
 
-class Tutor(UserInterface):
+class Student(UserInterface):
     def __init__(self, name, age, gender):
         super().__init__()
         self.name = name
@@ -9,4 +9,4 @@ class Tutor(UserInterface):
         self.gender = gender
 
     def get_role(self):
-        return 'Tutor'
+        return 'Student'
